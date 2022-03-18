@@ -1,0 +1,10 @@
+/.git
+/.svn
+/.idea
+/runtime
+/safefile
+/nbproject
+/composer.lock
+/public/upload
+/public/uploads
+/config/database.php
