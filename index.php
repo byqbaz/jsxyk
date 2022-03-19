@@ -12,6 +12,19 @@
 //
     function js($zw){
         $redis=_redis();
+
+
+        if($redis->exists('hk'))
+            if($redis->get('hk')==date('Ym')){
+    //            $redis->hGet('zw_'.date('m'),'jh',$xyk[0]);
+    //            $redis->hGet('zw_'.date('m'),'jt',$xyk[1]);
+    //            $redis->hGet('zw_'.date('m'),'zx',$xyk[2]);
+    //            $redis->hGet('zw_'.date('m'),'gf',$xyk[3]);
+    //            echo $redis->get('hk');
+                echo 1;
+                exit;
+            }
+
         //建，交，信，广
         $sx=20000+15000+6000+2000;
         $xyk[0]=rand(20000,21000);
@@ -20,10 +33,7 @@
         $xyk[3]=22000-$xyk[0];
         $js=[];
         $num=[];
-        $redis->hSet('zw'.date('Y-m'),'jh',$xyk[0]);
-        $redis->hSet('zw'.date('Y-m'),'jt',$xyk[1]);
-        $redis->hSet('zw'.date('Y-m'),'zx',$xyk[2]);
-        $redis->hSet('zw'.date('Y-m'),'gf',$xyk[3]);
+
         for($i=0;$i<count($xyk);$i++){
             if($xyk[$i]>10000)
                 $num[$i]=rand(7,12);
@@ -39,6 +49,7 @@
                 if(array_sum($js[$j][$n])>=$xyk[$j]) continue;
                 if($dev%2==0){
                     $js[$j][$n]=round($ave-$dev);
+                    
                 }else{
                     $js[$j][$n]=round($ave+$dev);
                 }
@@ -46,8 +57,11 @@
            }
         }
 
+
         echo "<pre>";
         print_r($js);
+//        $hk=date('Ym');
+//        $redis->set('hk',$hk);
     }
 
 
